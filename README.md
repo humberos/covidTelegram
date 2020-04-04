@@ -36,7 +36,7 @@ Add by states data
 
 # LICENSE
 
-<p>If any is needed</p>
+<p>If any,</p>
 <pre>
 Copyright (c) 2020, DevCentre
 
