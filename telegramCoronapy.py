@@ -13,6 +13,7 @@ from tabulate import tabulate
 
 
 my_token = ""
+
 def updateData():
     if os.stat('today.csv').st_mtime - time() < - 60: # check if last modified time is less bigger than 60 seconds   
         args = ['python3', 'worldometerCoronapy.py']
