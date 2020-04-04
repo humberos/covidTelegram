@@ -9,7 +9,7 @@ Python code for telegram bot updates for Coronavirus (COVID-19)
 
 # Requirements
 
-Python 3 
+Python 3 (tested on 3.7.7)
 
 # Setup
 
