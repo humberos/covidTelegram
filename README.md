@@ -32,3 +32,24 @@ Python 3 (tested on 3.7.7)
 
 Improve command options
 Add by states data
+
+
+# LICENSE?
+
+<p>If any is needed, <b>WTFPL</b><br></p>
+<pre>
+ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+                    Version 2, December 2004 
+
+ Copyright (C) 2004 Sam Hocevar sam@hocevar.net 
+
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
+
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+
+  0. You just DO WHAT THE FUCK YOU WANT TO.
+</pre>
+
