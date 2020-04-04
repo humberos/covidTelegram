@@ -1,5 +1,7 @@
 Python code for telegram bot updates for Coronavirus (COVID-19)
 
+<img src="https://i.imgur.com/V6s45kU.png" width="400">
+
 
 # Requirements
 
