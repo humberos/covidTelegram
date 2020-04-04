@@ -15,7 +15,7 @@ from tabulate import tabulate
 my_token = ""
 
 def updateData():
-    if os.stat('today.csv').st_mtime - time() < - 60: # check if last modified time is less bigger than 60 seconds   
+    if os.stat('data/today.csv').st_mtime - time() < - 60: # check if last modified time is less bigger than 60 seconds   
         args = ['python3', 'worldometerCoronapy.py']
         subprocess.run(args)
 
@@ -77,7 +77,7 @@ def error(bot, update, error):
 
 def getLastCovid19Info(country='all',top=10):
 
-    df = pd.read_csv('today.csv', nrows=top,index_col=False, usecols=[
+    df = pd.read_csv('data/today.csv', nrows=top,index_col=False, usecols=[
                      "Country,Other", "TotalCases","TotalDeaths"])
 
     finalData = tabulate(

@@ -1,19 +1,22 @@
 # covidTelegram
 
+# Requirements
+
+Python 3 
+
 # Setup
 
-<code>git pull https://github.com/DevCentre/covidTelegram.git</code>
-<code>cd covidTelegram</code>
-<code>pip3 install -r requirements.txt</code>
+<code>git pull https://github.com/DevCentre/covidTelegram.git</code><br>
+<code>cd covidTelegram</code><br>
+<code>pip3 install -r requirements.txt</code><br>
 
-! Attention ! 
+# ! Attention ! 
 
 <b>update telegramCoronapy.py line with [ my_token = "" ] with your telegram bot token !</b>
 
 
 
-
-# startup
+# Startup
 
 <code>python3 telegramCoronapy.py</code>
 

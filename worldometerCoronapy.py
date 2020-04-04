@@ -1,4 +1,3 @@
-
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup as bs
@@ -57,7 +56,7 @@ def get_table_rows(table):
 
 
 def save_as_csv(table_name, headers, rows):
-    pd.DataFrame(rows, columns=headers).to_csv(f"{table_name}.csv")
+    pd.DataFrame(rows, columns=headers).to_csv(f"data/{table_name}.csv")
 
 
 
