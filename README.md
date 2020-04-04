@@ -1,4 +1,5 @@
-# covidTelegram
+Python code for telegram bot updates for Coronavirus (COVID-19)
+
 
 # Requirements
 
