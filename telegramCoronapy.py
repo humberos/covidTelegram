@@ -100,13 +100,13 @@ def getLastCovid19Info(country='all',top=10):
             df, headers=['Country', 'Cases', 'Deaths'], showindex="never")
         return str(finalData).replace('-','')
     elif country == "Brazil":
-        df = pd.read_csv('data/brazil_states.csv', index_col=False, usecols=[
-            "nome", "qtd_confirmado", "qtd_obito"])
+        df = pd.read_csv('data/brazil_states.csv', index_col=False, usecols=["nome", "qtd_confirmado", "qtd_obito"])
 
+        df['qtd_confirmado'] = pd.to_numeric(df['qtd_confirmado'], errors='ignore')
+        df = df.sort_values(by=['qtd_confirmado'], ascending=False)
         finalData = tabulate(
             df, headers=['State', 'Cases', 'Deaths'], showindex="never")
-        return str(finalData).replace('-','')        
-
+        return str(finalData).replace('-','')
 
 
 def main():
