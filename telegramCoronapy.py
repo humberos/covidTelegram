@@ -12,7 +12,7 @@ from tabulate import tabulate
 
 
 
-my_token = ""
+my_token = open('telegramToken.txt','r').read()
 
 def updateData():
     if os.stat('data/today.csv').st_mtime - time() < - 60: # check if last modified time is less bigger than 60 seconds   
@@ -29,16 +29,26 @@ def send(msg, chat_id, token=my_token):
 
 
 def top10(bot, update):
+    logActivity(str(update))
     u_id = update.effective_user.id
     bot = telegram.Bot(token=my_token)
     updateData()
     bot.sendMessage(chat_id=u_id, text=("<pre>"+str(getLastCovid19Info(top=10))+"</pre>"), parse_mode='html')
 
 def top20(bot, update):
+    logActivity(str(update))
     u_id = update.effective_user.id
     bot = telegram.Bot(token=my_token)
     updateData()
     bot.sendMessage(chat_id=u_id, text=("<pre>"+str(getLastCovid19Info(top=20))+"</pre>"),parse_mode='html')
+
+def brazilStates(bot, update):
+    logActivity(str(update))
+    u_id = update.effective_user.id
+    bot = telegram.Bot(token=my_token)
+    updateData()
+    bot.sendMessage(chat_id=u_id, text=(
+        "<pre>"+str(getLastCovid19Info(country='Brazil'))+"</pre>"), parse_mode='html')
 
 
 def dump(obj):
@@ -50,6 +60,7 @@ def dump(obj):
 # Define a few command handlers. These usually take the two arguments bot and
 # update. Error handlers also receive the raised TelegramError object in error.
 def start(bot, update):
+    logActivity(str(update))
     """Send a message when the command /start is issued."""
     update.message.reply_text('Bot dedicated to show Coronavirus (COVID-19) updates.')
 
@@ -75,14 +86,27 @@ def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"', update, error)
 
 
+def logActivity(update):
+    with open('spam.log','a') as log:
+        log.write("\n"+str(update))
+
 def getLastCovid19Info(country='all',top=10):
 
-    df = pd.read_csv('data/today.csv', nrows=top,index_col=False, usecols=[
-                     "Country,Other", "TotalCases","TotalDeaths"])
+    if country == 'all':
+        df = pd.read_csv('data/today.csv', nrows=top,index_col=False, usecols=[
+                        "Country,Other", "TotalCases","TotalDeaths"])
 
-    finalData = tabulate(
-        df, headers=['Country', 'Cases', 'Deaths'], showindex="never")
-    return str(finalData).replace('-','')
+        finalData = tabulate(
+            df, headers=['Country', 'Cases', 'Deaths'], showindex="never")
+        return str(finalData).replace('-','')
+    elif country == "Brazil":
+        df = pd.read_csv('data/brazil_states.csv', index_col=False, usecols=[
+            "nome", "qtd_confirmado", "qtd_obito"])
+
+        finalData = tabulate(
+            df, headers=['State', 'Cases', 'Deaths'], showindex="never")
+        return str(finalData).replace('-','')        
+
 
 
 def main():
@@ -99,6 +123,7 @@ def main():
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("top10", top10))
     dp.add_handler(CommandHandler("top20", top20))
+    dp.add_handler(CommandHandler("brazil", brazilStates))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
@@ -118,3 +143,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
