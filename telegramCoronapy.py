@@ -11,7 +11,7 @@ import pandas as pd
 from tabulate import tabulate
 
 
-
+#force update
 my_token = open('telegramToken.txt','r').read()
 
 def updateData():
